@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="icon" type="image/png" href="Images/rossRams.png">
+    <title>Rossrams Engineering Club</title>
+    <style>
+        /* Style for the alert message */
+        #alertMessage {
+            display: none;
+            /* Initially hidden */
+            background-color: #4CAF50;
+            /* Green background */
+            color: white;
+            /* White text */
+            padding: 15px;
+            /* Some padding */
+            margin-bottom: 20px;
+            /* Space below the alert */
+            text-align: center;
+            /* Center text */
+        }
+
+        /* Style for loading spinner */
+        #loadingSpinner {
+            display: none;
+            /* Initially hidden */
+            margin: 20px auto;
+            /* Center the spinner */
+            width: 50px;
+            /* Width of the spinner */
+            height: 50px;
+            /* Height of the spinner */
+            border: 5px solid #f3f3f3;
+            /* Light grey background */
+            border-top: 5px solid #3498db;
+            /* Blue color for the spinner */
+            border-radius: 50%;
+            /* Make it round */
+            animation: spin 1s linear infinite;
+            /* Spin animation */
+        }
+
+        /* Animation keyframes */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <div id="logo">
+            <img src="Images/rossRams.png" alt="Ross Rams Logo">
+            <p id="logoText">Engineering Club</p>
+        </div>
+        <div id="links">
+            <a class="navLink" href="index.html">Home</a>
+            <a class="navLink" href="store.html">Store</a>
+            <a class="active navLink" href="contact.html">Contact</a>
+        </div>
+    </div>
+
+    <div id="contact">
+        <h1>CONTACT US</h1>
+        <div id="alertMessage">Hey! It worked! Check your email for a confirmation.</div>
+        <div id="loadingSpinner"></div> <!-- Loading Spinner -->
+        <form id="contactForm" method="post">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div id="footer">
+        <div id="footerLogo">
+            <img src="Images/rossRams.png" alt="Ross Rams Logo">
+            <p id="logoText">Engineering Club</p>
+        </div>
+        <p id="info"><a href="https://www.rossrams.com">Ross Local School District</a>
+            <br>3371 Hamilton-Cleves Road OH 45013
+            <br>(513) 863-1253
+        </p>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzmKcU6qjZ_4KamF2rTGoq2KUMF8mtn5gdzFlS-0IHcRRLyMHm9au9BCGL2yZsn-9wePw/exec';
+
+        document.getElementById('contactForm').addEventListener('submit', e => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const loadingSpinner = document.getElementById('loadingSpinner');
+
+            // Show the loading spinner
+            loadingSpinner.style.display = 'block';
+
+            fetch(scriptURL, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Hide the loading spinner
+                    loadingSpinner.style.display = 'none';
+
+                    if (data.status === "success") {
+                        // Clear the form fields
+                        e.target.reset();
+                        window.scrollTo(0, 0);
+                        // Show the alert message
+                        const alertMessage = document.getElementById('alertMessage');
+                        alertMessage.style.display = 'block';
+                    } else {
+                        console.error('Error:', data.message);
+                    }
+                })
+                .catch(error => {
+                    // Hide the loading spinner
+                    loadingSpinner.style.display = 'none';
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+
+</html>

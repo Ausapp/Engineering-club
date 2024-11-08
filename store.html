@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="store.css">
+    <link rel="icon" type="image/png" href="Images/rossRams.png">
+
+    <title>Rossrams Engineering Club</title>
+</head>
+
+<body>
+    <div id="header">
+        <div id="logo">
+            <img src="Images/rossRams.png" alt="Ross Rams Logo">
+            <p id="logoText">Engineering Club</p>
+        </div>
+        <div id="links">
+            <a class="navLink" href="index.html">Home</a>
+            <a class="active navLink" href="store.html">Store</a>
+            <a class="navLink" href="contact.html">Contact</a>
+        </div>
+    </div>
+    <div id="storeContainer">
+        <div id="storeHeader">
+
+            <div class="dropdown">
+                <button onclick="showDropdown()" class="dropButton">Everything <i class="arrow down"></i></button>
+                <div class="dropdownContent">
+                    <a href="#" onclick="sortItems('everything')">Everything</a>
+                    <a href="#" onclick="sortItems('prints')">3d Prints</a>
+                    <a href="#" onclick="sortItems('leds')">Led Signs</a>
+                    <a href="#" onclick="sortItems('ornaments')">Ornaments</a>
+                    <a href="#" onclick="sortItems('other')">Other</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="store">
+            <div class="item">
+                <a class="imgContainer" href="product/octopus.html"><img src="Images/product/LedSign.png"></a>
+                <em>
+                    <b class="description">
+                        <a class="itemName" href="product/octopus.html">Custom LED Sign</a>
+                        <p class="itemCost">$20.00</p>
+                    </b>
+                </em>
+                <a class="moreDetails" href="product/octopus.html">View Details</a>
+            </div>
+            <div class="item">
+                <a class="imgContainer" href="product/octopus.html"><img src="Images/product/octopus.png"></a>
+                <em>
+                    <b class="description">
+                        <a class="itemName" href="product/octopus.html">Custom Chopping Board</a>
+                        <p class="itemCost">$25.00</p>
+                    </b>
+                </em>
+                <a class="moreDetails" href="product/octopus.html">View Details</a>
+            </div>
+            <div class="item">
+                <a class="imgContainer" href="product/octopus.html"><img src="Images/product/octopus.png"></a>
+                <em>
+                    <b class="description">
+                        <a class="itemName" href="product/octopus.html">3d printed octopus</a>
+                        <p class="itemCost">$5.00</p>
+                    </b>
+                </em>
+                <a class="moreDetails" href="product/octopus.html">View Details</a>
+            </div>
+
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footerLogo">
+            <img src="Images/rossRams.png" alt="Ross Rams Logo">
+            <p id="logoText">Engineering Club</p>
+        </div>
+        <p id="info"><a href="https://www.rossrams.com">Ross Local School Dirstrict</a>
+            <br>3371 Hamilton-Cleves Road OH 45013
+            <br>(513) 863-1253
+        </p>
+    </div>
+
+</body>
+<script src="sort.js"></script>
+
+</html>

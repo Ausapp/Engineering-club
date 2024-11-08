@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="order.css">
+    <link rel="icon" type="image/png" href="Images/rossRams.png">
+    <title>Rossrams Engineering Club</title>
+    <style>
+        #imagePreview img {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <div id="logo">
+            <img src="Images/rossRams.png" alt="Ross Rams Logo">
+            <p id="logoText">Engineering Club</p>
+        </div>
+        <div id="links">
+            <a class="navLink" href="index.html">Home</a>
+            <a class="navLink" href="store.html">Store</a>
+            <a class="navLink" href="about.html">About</a>
+            <a class="navLink" href="contact.html">Contact</a>
+        </div>
+    </div>
+
+    <div id="content">
+        <form id="orderForm" method="post">
+            <h2>Information</h2>
+            <div>
+                <input id="firstName" type="text" name="name" placeholder="First name*" required>
+                <input id="lastName" type="text" placeholder="Last name*" required>
+            </div>
+            <input id="email" type="email" placeholder="Email*" required>
+            <input type="tel" id="phone" placeholder="(123) 456-7890" required>
+            <textarea id="details" type="textarea" placeholder="Additional Details..."></textarea>
+            <div>
+                <input type="checkbox" id="cashOnly" required>
+                <label for="cashOnly">* Acknowledge</label>
+            </div>
+            <button type="submit" id="submitOrder">Finalize Order</button>
+        </form>
+        <div id="orderSummary">
+            <h2>Your Order</h2>
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Cost</th>
+                </tr>
+                <tr>
+                    <td>3D Printed octopus
+                        <div id="imagePreview"></div>
+                    </td>
+                    <td>$5.00</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>$5.00</strong></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div id="footerLogo">
+            <img src="Images/rossRams.png" alt="Ross Rams Logo">
+            <p id="logoText">Engineering Club</p>
+        </div>
+        <p id="info"><a href="https://www.rossrams.com">Ross Local School District</a>
+            <br>3371 Hamilton-Cleves Road OH 45013
+            <br>(513) 863-1253
+        </p>
+    </div>
+</body>
+<script>
+    window.onload = function () {
+        const imageData = sessionStorage.getItem('designImage');
+        if (imageData) {
+            document.getElementById('imagePreview').innerHTML = `<img src="${imageData}" alt="Design Preview" />`;
+        }
+    };
+
+    const form = document.getElementById("orderForm");
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+    });
+
+
+</script>
+
+</html>
