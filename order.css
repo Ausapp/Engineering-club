@@ -132,6 +132,7 @@ textarea {
 
 /* Table Styling */
 table {
+    display: none;
     width: 100%;
     border-collapse: collapse;
     font-family: "Bodoni", serif;
@@ -152,9 +153,7 @@ th {
     color: #fbb61f;
 }
 
-tr:hover {
-    background-color: #1a1a1a;
-}
+
 
 tr:nth-child(even) {
     background-color: #1f0000;

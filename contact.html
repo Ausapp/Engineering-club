@@ -108,6 +108,7 @@
         document.getElementById('contactForm').addEventListener('submit', e => {
             e.preventDefault();
             const formData = new FormData(e.target);
+            formData.append("type", "contact")
             const loadingSpinner = document.getElementById('loadingSpinner');
 
             // Show the loading spinner

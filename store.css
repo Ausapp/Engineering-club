@@ -135,9 +135,6 @@ body {
 .dropdownContent a:hover {
     background-color:#4d0000;
 }
-.visible {
-    display:flex;
-}
 
 #storeContainer {
     width: 70%; 
@@ -159,7 +156,7 @@ body {
 }
 
 .item {
-    display:flex;
+    display:none;
     width: 17rem;
     overflow: hidden;
     flex-direction: column;
@@ -289,4 +286,7 @@ body {
     html {
         font-size: 22px; /* Even bigger for large desktops */
     }
+}
+.visible {
+    display:flex;
 }
