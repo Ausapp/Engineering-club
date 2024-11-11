@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../item.css">
+    <link rel="icon" type="image/png" href="../Images/rossRams.png">
+    <title>Rossrams Engineering Club</title>
+</head>
+
+<body>
+    <div id="header">
+        <div id="logo">
+            <img src="../Images/rossRams.png" alt="Ross Rams Logo">
+            <p id="logoText">Engineering Club</p>
+        </div>
+        <div id="links">
+            <a class="navLink" href="../index.html">Home</a>
+            <a class="navLink" href="../store.html">Store</a>
+            <a class="navLink" href="../contact.html">Contact</a>
+        </div>
+    </div>
+    <div id="content">
+        <div id="thumbnail">
+            <img src="../Images/product/snowflakeOrnament.png" alt="ChristmasTree">
+        </div>
+        <div id="productDetails">
+            <p id="navigation">Home / Ornaments / Snowflake</p>
+            <h1 id="name">Snowflake Ornament</h1>
+            <p id="cost">$5.00</p>
+            
+            <p id="description">Add a touch of winter magic to your decorations with a custom engraved snowflake ornament. Made from high-quality wood, each ornament features intricate snowflake details that can be personalized with names, dates, or festive messages. Perfect for hanging on your tree or gifting as a thoughtful holiday keepsake!</p>
+            <button onclick="goToCheckout()" id="orderButton">Place Order</a>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footerLogo">
+            <img src="../Images/rossRams.png" alt="Ross Rams Logo">
+            <p id="logoText">Engineering Club</p>
+        </div>
+        <p id="info"><a href="https://www.rossrams.com">Ross Local School District</a>
+            <br>3371 Hamilton-Cleves Road OH 45013
+            <br>(513) 863-1253
+        </p>
+    </div>
+</body>
+<script>
+    function goToCheckout() {
+    // Set the base URL for redirection
+    let baseUrl = "../order.html?item=7";
+    
+    // Get current URL parameters and append them to the new URL
+    const currentParams = new URLSearchParams(window.location.search);
+    if (currentParams.toString()) {
+        baseUrl += "&" + currentParams.toString();
+    }
+
+    // Clear all session data
+    sessionStorage.clear();
+
+    // Redirect to the new URL
+    window.location.href = baseUrl;
+}
+</script>
+
+</html>

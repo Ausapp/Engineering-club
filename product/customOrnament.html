@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../item.css">
+    <link rel="icon" type="image/png" href="../Images/rossRams.png">
+    <title>Rossrams Engineering Club</title>
+</head>
+
+<body>
+    <div id="header">
+        <div id="logo">
+            <img src="../Images/rossRams.png" alt="Ross Rams Logo">
+            <p id="logoText">Engineering Club</p>
+        </div>
+        <div id="links">
+            <a class="navLink" href="../index.html">Home</a>
+            <a class="navLink" href="../store.html">Store</a>
+            <a class="navLink" href="../contact.html">Contact</a>
+        </div>
+    </div>
+    <div id="content">
+        <div id="thumbnail">
+            <img src="../Images/product/plainOrnament.png" alt="3D Printed Octopus">
+        </div>
+        <div id="productDetails">
+            <p id="navigation">Home / Ornaments / Custom Ornament</p>
+            <h1 id="name">Custom Ornament</h1>
+            <p id="cost">$5.00</p>
+            <div id="customization">
+                <p id="customizationTitle">Customizations</p>
+                <form style="margin: 10px 0; /* Space above and below the options */" form id="productForm">
+                    <h3>Custom Design: </h3>
+                    <input type="file" id="designUpload" accept="image/*" required />
+                </form>
+            </div>
+            <p id="description">Make your holiday celebrations extra special with a custom ornament! Crafted from high-quality wood or acrylic, this ornament can be engraved with any design, name, or message you choose. Whether it's for your tree or as a thoughtful gift, it’s a meaningful way to commemorate the season and create lasting memories.</p>
+            <button onclick="goToCheckout()" id="orderButton">Place Order</a>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footerLogo">
+            <img src="../Images/rossRams.png" alt="Ross Rams Logo">
+            <p id="logoText">Engineering Club</p>
+        </div>
+        <p id="info"><a href="https://www.rossrams.com">Ross Local School District</a>
+            <br>3371 Hamilton-Cleves Road OH 45013
+            <br>(513) 863-1253
+        </p>
+    </div>
+</body>
+<script>
+    function goToCheckout() {
+        const fileInput = document.getElementById('designUpload');
+        const file = fileInput.files[0];
+
+        if (file) {
+            // Convert to data URL to store in sessionStorage (optional step)
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                sessionStorage.setItem('designImage', event.target.result);
+                window.location.href = '../order.html?item=4';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert('Please upload a design image.');
+        }
+    }
+</script>
+
+</html>

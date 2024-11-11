@@ -31,16 +31,12 @@
             <p id="cost">$20.00</p>
             <div id="customization">
                 <p id="customizationTitle">Customizations</p>
-                <form id="productForm">
+                <form style="margin: 10px 0; /* Space above and below the options */" form id="productForm">
                     <h3>Custom Design: </h3>
                     <input type="file" id="designUpload" accept="image/*" required />
                 </form>
             </div>
-            <p id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-                in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p id="description">Personalize your space with a unique, laser-engraved LED sign! Whether it's your name, favorite logo, or a custom design, we bring your vision to life in stunning detail on high-quality acrylic. The LED base provides a soft glow, perfect for adding ambiance to your desk or room. Just upload your design, and we’ll handle the rest!</p>
             <button onclick="goToCheckout()" id="orderButton">Place Order</a>
         </div>
     </div>
@@ -57,20 +53,21 @@
 </body>
 <script>
     function goToCheckout() {
-    const fileInput = document.getElementById('designUpload');
-    const file = fileInput.files[0];
-    
-    if (file) {
-      // Convert to data URL to store in sessionStorage (optional step)
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        sessionStorage.setItem('designImage', event.target.result);
-        window.location.href = '../order.html?item=1?color=blue';
-      };
-      reader.readAsDataURL(file);
-    } else {
-      alert('Please upload a design image.');
+        const fileInput = document.getElementById('designUpload');
+        const file = fileInput.files[0];
+
+        if (file) {
+            // Convert to data URL to store in sessionStorage (optional step)
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                sessionStorage.setItem('designImage', event.target.result);
+                window.location.href = '../order.html?item=4';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert('Please upload a design image.');
+        }
     }
-  }
 </script>
+
 </html>
