@@ -198,6 +198,8 @@
     // Create form data, add the image data, and POST the data
     const formData = new FormData(e.target);
     formData.append("type", "order");
+    const item = urlParams.get('item');
+    formData.append("item", item);
     formData.append("image", sessionStorage.getItem("designImage"));
 
     fetch(scriptURL, {
