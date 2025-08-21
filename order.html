@@ -103,7 +103,7 @@
     </div>
 </body>
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzmKcU6qjZ_4KamF2rTGoq2KUMF8mtn5gdzFlS-0IHcRRLyMHm9au9BCGL2yZsn-9wePw/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby7LLnUTbavcY6FtM2V-gTl2XX2iY8kwAy8m-UCWR6eow0B59DGEU9UsRojANyRSeggVA/exec';
 
     window.onload = function () {
 
@@ -136,15 +136,15 @@
                     <td><strong>$${data.data[3]}.00</strong></td>
                 </tr>`;
 
-                pulse.style.display = "none";
-                table.style.display = "flex";
+                    pulse.style.display = "none";
+                    table.style.display = "flex";
 
-                // Retrieve image data from sessionStorage
-                const imageData = sessionStorage.getItem('designImage');
-                if (imageData) {
-                    // Insert a new row right after the product row
-                    const imageRow = table.insertRow(2); // Index 2 to insert after the product row
-                    imageRow.innerHTML = `
+                    // Retrieve image data from sessionStorage
+                    const imageData = sessionStorage.getItem('designImage');
+                    if (imageData) {
+                        // Insert a new row right after the product row
+                        const imageRow = table.insertRow(2); // Index 2 to insert after the product row
+                        imageRow.innerHTML = `
                         <td>Design</td>
                         <td>
                             <div id="imagePreview">
@@ -152,18 +152,18 @@
                             </div>
                         </td>
                     `;
-                }
-                const urlParams = new URLSearchParams(window.location.search);
-    urlParams.forEach((value, key) => {
-        // Skip the "item" parameter as it's already displayed in the product row
-        if (key !== 'item') {
-            const paramRow = table.insertRow(table.rows.length - 1); // Insert at the end of the table
-            paramRow.innerHTML = `
+                    }
+                    const urlParams = new URLSearchParams(window.location.search);
+                    urlParams.forEach((value, key) => {
+                        // Skip the "item" parameter as it's already displayed in the product row
+                        if (key !== 'item') {
+                            const paramRow = table.insertRow(table.rows.length - 1); // Insert at the end of the table
+                            paramRow.innerHTML = `
                 <td>${key.charAt(0).toUpperCase() + key.slice(1)}</td>
                 <td>${value}</td>
             `;
-        }
-    });
+                        }
+                    });
 
                 } else {
                     console.error('Error:', data.message);
@@ -177,53 +177,53 @@
     }
 
     document.getElementById("orderForm").addEventListener('submit', e => {
-    e.preventDefault();
-    
-    // Get the 'details' textarea
-    const detailsTextarea = document.getElementById("details");
+        e.preventDefault();
 
-    // Get current URL parameters and format them
-    const urlParams = new URLSearchParams(window.location.search);
-    let paramsString = "\n\nAdditional Order Details:\n";
-    urlParams.forEach((value, key) => {
-        // Skip the "item" parameter to avoid redundancy
-        if (key !== 'item') {
-            paramsString += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}\n`;
-        }
+        // Get the 'details' textarea
+        const detailsTextarea = document.getElementById("details");
+
+        // Get current URL parameters and format them
+        const urlParams = new URLSearchParams(window.location.search);
+        let paramsString = "\n\nAdditional Order Details:\n";
+        urlParams.forEach((value, key) => {
+            // Skip the "item" parameter to avoid redundancy
+            if (key !== 'item') {
+                paramsString += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}\n`;
+            }
+        });
+
+        // Append URL parameters to the 'details' textarea value
+        detailsTextarea.value += paramsString;
+
+        // Create form data, add the image data, and POST the data
+        const formData = new FormData(e.target);
+        formData.append("type", "order");
+        const item = urlParams.get('item');
+        formData.append("item", item);
+        formData.append("image", sessionStorage.getItem("designImage"));
+
+        fetch(scriptURL, {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    alert("Order submitted successfully!");
+                    console.log(data.message);
+                    document.getElementById("orderForm").reset();
+                    sessionStorage.removeItem("designImage");
+                    window.location.href = 'index.html';
+                } else {
+                    console.error("Error:", data.message);
+                    alert("There was an error processing your order. Please try again.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An unexpected error occurred. Please try again.");
+            });
     });
-
-    // Append URL parameters to the 'details' textarea value
-    detailsTextarea.value += paramsString;
-
-    // Create form data, add the image data, and POST the data
-    const formData = new FormData(e.target);
-    formData.append("type", "order");
-    const item = urlParams.get('item');
-    formData.append("item", item);
-    formData.append("image", sessionStorage.getItem("designImage"));
-
-    fetch(scriptURL, {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === "success") {
-            alert("Order submitted successfully!");
-            console.log(data.message);
-            document.getElementById("orderForm").reset();
-            sessionStorage.removeItem("designImage");
-            window.location.href = 'index.html';
-        } else {
-            console.error("Error:", data.message);
-            alert("There was an error processing your order. Please try again.");
-        }
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        alert("An unexpected error occurred. Please try again.");
-    });
-});
 
 
 
