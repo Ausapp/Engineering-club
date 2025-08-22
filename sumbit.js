@@ -14,7 +14,7 @@
         console.log("Sending form data:", formData);
 
         // Your Google Apps Script URL
-        const scriptURL = "https://script.google.com/macros/s/AKfycby7LLnUTbavcY6FtM2V-gTl2XX2iY8kwAy8m-UCWR6eow0B59DGEU9UsRojANyRSeggVA/exec";
+        const scriptURL = "https://script.google.com/macros/s/AKfycbzFoKr8LP43f1MpoTCZucPqrQNWkOK2lWXHZbKe1eFokq39ZOI-bMAz7YYgBD0d1iKJ/exec";
 
         // Send form data as JSON
         try {
